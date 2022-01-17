@@ -1,12 +1,19 @@
 package com.example.photo.model;
 
+import com.example.photo.validation.ValidName;
 import org.springframework.data.annotation.Id;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 public class User {
     @Id
     private String id;
+    @NotEmpty @ValidName
     private String name;
     private String address;
+    @Min(value=13)  @Max(value=150)
     private int age;
 
     public String getName() {
