@@ -1,11 +1,9 @@
 package com.example.photo.service;
 
 import com.example.photo.model.User;
-import com.example.photo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import com.example.photo.repository.UserRepository;
 
 import java.util.List;
 
@@ -15,22 +13,31 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User getUser(){
-        return userRepository.getUser();
-    }
-
     public User saveUser(User user) {
-        return userRepository.saveUser(user);
+        return userRepository.save(user);
     }
 
     public List<User> getAllUsers(){
-        return userRepository.getAllUsers();
-    }
-    public User getUserById( int userId){
-        return userRepository.getUserById(userId);
+        return userRepository.findAll();
     }
 
-    public User updateUser(int userId, User user) {
-        return userRepository.updateUser(userId,user);
+    public User updateUser( User user) {
+        return userRepository.save(user);
     }
+
+    public List<User> getByAddress(String address) {
+        return userRepository.findAllByAddress(address);
+    }
+//    public User getUser(){
+//        return userRepository.getUser();
+//    }
+//
+
+//
+
+//    public User getUserById( int userId){
+//        return userRepository.getUserById(userId);
+//    }
+//
+
 }
